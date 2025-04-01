@@ -12,6 +12,7 @@ export default function Home() {
   const [videoSeries, setVideoSeries] = useState<VideoSeries[]>([]);
   const [recommendedSeries, setRecommendedSeries] =
     useState<VideoSeries | null>(null);
+  const [parsedGenres, setParsedGenres] = useState<null | []>(null);
 
   useEffect(() => {
     const fetchVideoSeries = async () => {
@@ -34,11 +35,13 @@ export default function Home() {
     };
 
     fetchVideoSeries();
-  }, []);
 
-  // get genre
-  const genres = localStorage.getItem("genres");
-  const parsedGenres = genres ? JSON.parse(genres) : null;
+    // get genre
+    const genres = localStorage.getItem("genres");
+    const tmp = genres ? JSON.parse(genres) : null;
+    setParsedGenres(tmp);
+  }, []);
+  console.log(parsedGenres);
 
   return (
     <main className="min-h-screen bg-neutral-950 text-white overflow-hidden">
@@ -76,20 +79,22 @@ export default function Home() {
       </section>
 
       {/* map genre */}
-      {parsedGenres.map((genre: any) => {
-        return (
-          <section className="px-4 md:px-6 pb-10 relative">
-            {/* Right shadow gradient */}
-            <div className="absolute z-50 right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-black to-transparent pointer-events-none"></div>
-            {/* Left shadow gradient */}
-            <div className="absolute z-50 left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-black to-transparent pointer-events-none"></div>
+      {parsedGenres &&
+        parsedGenres.length > 0 &&
+        parsedGenres.map((genre: any) => {
+          return (
+            <section className="px-4 md:px-6 pb-10 relative" key={genre.name}>
+              {/* Right shadow gradient */}
+              <div className="absolute z-50 right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-black to-transparent pointer-events-none"></div>
+              {/* Left shadow gradient */}
+              <div className="absolute z-50 left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-black to-transparent pointer-events-none"></div>
 
-            <div className="relative">
-              <InfiniteScroll series={genre.value} judul={genre.name} />
-            </div>
-          </section>
-        );
-      })}
+              <div className="relative">
+                <InfiniteScroll series={genre.value} judul={genre.name} />
+              </div>
+            </section>
+          );
+        })}
     </main>
   );
 }

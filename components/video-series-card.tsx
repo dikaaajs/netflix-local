@@ -83,6 +83,8 @@ export function VideoSeriesCard({ series }: VideoSeriesCardProps) {
           className={`absolute inset-0 bg-gray-800 transition-opacity duration-300 ${
             isHovering && isPreviewReady ? "opacity-0" : "opacity-100"
           }`}
+          onContextMenu={(e) => e.preventDefault()} // Disable right-click
+          onTouchStart={(e) => e.preventDefault()} // Disable hold on mobile
         >
           <img
             src={`/api/thumbnail/${series.id}`}
@@ -97,6 +99,8 @@ export function VideoSeriesCard({ series }: VideoSeriesCardProps) {
             className={`absolute inset-0 transition-opacity duration-300 ${
               isPreviewReady ? "opacity-100" : "opacity-0"
             }`}
+            onContextMenu={(e) => e.preventDefault()} // Disable right-click
+            onTouchStart={(e) => e.preventDefault()} // Disable hold on mobile
           >
             <video
               ref={videoRef}
@@ -142,7 +146,9 @@ export function VideoSeriesCard({ series }: VideoSeriesCardProps) {
           video
         </Badge>
 
-        <h3 className="font-bold text-lg font-satoshi">{series.title}</h3>
+        <h3 className="font-bold text-lg font-satoshi truncate">
+          {series.title}
+        </h3>
       </div>
     </div>
   );

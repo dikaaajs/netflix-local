@@ -19,7 +19,8 @@ export default function InfiniteScroll({ series, judul }: InfiniteScrollProps) {
     if (!scrollRef.current) return;
 
     const container = scrollRef.current;
-    const scrollAmount = 220 * 5; // Jarak scroll (5 card)
+    const isLaptop = window.innerWidth >= 1024; // Assuming laptop screens are 1024px or wider
+    const scrollAmount = isLaptop ? 220 * 5 : 220 * 2; // Scroll 5 cards on laptop, 2 cards otherwise
 
     let start = container.scrollLeft;
     let end =
@@ -28,7 +29,7 @@ export default function InfiniteScroll({ series, judul }: InfiniteScrollProps) {
 
     function animateScroll(time: number) {
       if (!startTime) startTime = time;
-      const progress = Math.min((time - startTime) / 500, 1); // Durasi 400ms
+      const progress = Math.min((time - startTime) / 300, 1); // Durasi 400ms
       const easeOutProgress = 1 - Math.pow(1 - progress, 3); // Easing ease-out
       container.scrollLeft = start + (end - start) * easeOutProgress;
 
@@ -70,7 +71,7 @@ export default function InfiniteScroll({ series, judul }: InfiniteScrollProps) {
       {/* Scrollable container */}
       <div
         ref={scrollRef}
-        className="flex overflow-x-hidden overflow-y-visible h-[250px] md:h-[280px] items-end gap-4 pb-4"
+        className="flex overflow-x-scroll xl:overflow-x-hidden overflow-y-visible h-[250px] md:h-[280px] items-end gap-4 pb-4"
         style={{ scrollBehavior: "smooth", WebkitOverflowScrolling: "touch" }}
       >
         {series.map((item, index) => (

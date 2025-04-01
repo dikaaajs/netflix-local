@@ -74,8 +74,8 @@ export function UserProfileDropdown({ allSeries }: UserProfileDropdownProps) {
         </Avatar>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="w-80 bg-gray-900 border border-gray-800 text-white p-0 mr-4">
-        <div className="flex items-center gap-3 p-4 border-b border-gray-800">
+      <DropdownMenuContent className="w-80 bg-neutral-900 border border-neutral-800 text-white p-0 mr-4">
+        <div className="flex items-center gap-3 p-4 border-b border-neutral-800">
           <Avatar className="h-12 w-12 border-2 border-purple-500">
             <AvatarImage
               src="https://i.pinimg.com/736x/b9/c1/3b/b9c13beab4f3dc8c6c896ff570fa20ec.jpg"
@@ -87,13 +87,15 @@ export function UserProfileDropdown({ allSeries }: UserProfileDropdownProps) {
           </Avatar>
           <div>
             <p className="font-medium">Yoai</p>
-            <p className="text-sm text-gray-400">Barang siapa barang gwejh</p>
+            <p className="text-sm text-neutral-400">
+              Barang siapa barang gwejh
+            </p>
           </div>
         </div>
 
-        <div className="p-4 border-b border-gray-800">
-          <DropdownMenuLabel className="text-gray-400 text-xs font-normal mb-3 pl-0">
-            LIBRARY STATISTICS
+        <div className="p-4 border-b border-neutral-800">
+          <DropdownMenuLabel className="text-neutral-400 text-xs font-normal mb-3 pl-0">
+            STATISTICS
           </DropdownMenuLabel>
 
           <div className="space-y-3">
@@ -103,7 +105,7 @@ export function UserProfileDropdown({ allSeries }: UserProfileDropdownProps) {
               </div>
               <div className="flex-1">
                 <p className="text-sm font-medium">Total Series</p>
-                <p className="text-xs text-gray-400">
+                <p className="text-xs text-neutral-400">
                   {allSeries.length} series
                 </p>
               </div>
@@ -118,7 +120,7 @@ export function UserProfileDropdown({ allSeries }: UserProfileDropdownProps) {
               </div>
               <div className="flex-1">
                 <p className="text-sm font-medium">Total Episodes</p>
-                <p className="text-xs text-gray-400">Across all series</p>
+                <p className="text-xs text-neutral-400">Across all series</p>
               </div>
               <div className="text-xl font-semibold text-green-400">
                 {totalEpisodes}
@@ -131,7 +133,7 @@ export function UserProfileDropdown({ allSeries }: UserProfileDropdownProps) {
               </div>
               <div className="flex-1">
                 <p className="text-sm font-medium">Watch Time</p>
-                <p className="text-xs text-gray-400">
+                <p className="text-xs text-neutral-400">
                   Estimated total duration
                 </p>
               </div>
@@ -143,8 +145,8 @@ export function UserProfileDropdown({ allSeries }: UserProfileDropdownProps) {
         </div>
 
         {genres.length > 0 && (
-          <div className="p-4 border-b border-gray-800">
-            <DropdownMenuLabel className="text-gray-400 text-xs font-normal mb-3 pl-0">
+          <div className="p-4 border-b border-neutral-800">
+            <DropdownMenuLabel className="text-neutral-400 text-xs font-normal mb-3 pl-0">
               YOUR GENRES
             </DropdownMenuLabel>
 
@@ -156,7 +158,7 @@ export function UserProfileDropdown({ allSeries }: UserProfileDropdownProps) {
                   </div>
                   <div className="flex-1">
                     <p className="text-sm font-medium">{genre.name}</p>
-                    <p className="text-xs text-gray-400">
+                    <p className="text-xs text-neutral-400">
                       {genre.value.length}{" "}
                       {genre.value.length === 1 ? "series" : "series"}
                     </p>
@@ -181,12 +183,7 @@ export function UserProfileDropdown({ allSeries }: UserProfileDropdownProps) {
             </DropdownMenuItem>
           </Link>
 
-          <DropdownMenuSeparator className="bg-gray-800" />
-
-          <DropdownMenuItem className="cursor-pointer flex items-center gap-2 text-red-400">
-            <LogOut size={16} />
-            <span>Exit</span>
-          </DropdownMenuItem>
+          <DropdownMenuSeparator className="bg-neutral-800" />
         </div>
       </DropdownMenuContent>
     </DropdownMenu>
